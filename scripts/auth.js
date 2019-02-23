@@ -6,11 +6,15 @@ if(user){
     //get data
 db.collection('guides').get().then(snapshot=>{
     setupGuides(snapshot.docs);
+    setupUI();
+    
     })
     console.log('user logged in')
 }
 else {
     setupGuides([])
+    setupUI();
+    
     console.log('user logged out')
 }
 })
