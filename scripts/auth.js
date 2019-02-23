@@ -1,3 +1,13 @@
+//listen for auth status changed
+auth.onAuthStateChanged(user=>{
+if(user){
+    console.log('user logged in')
+}
+else {
+    console.log('user logged out')
+}
+})
+
 //signup
 const signupForm=document.querySelector('#signup-form');
 
