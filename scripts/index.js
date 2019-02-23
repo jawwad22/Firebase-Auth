@@ -3,6 +3,7 @@ const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 
 const setupUI = (user) => {
+    console.log(user)
     if (user) {
       // toggle user UI elements
       loggedInLinks.forEach(item => item.style.display = 'block');

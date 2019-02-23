@@ -3,21 +3,38 @@
 //listen for auth status changed
 auth.onAuthStateChanged(user=>{
 if(user){
+    console.log(user)
     //get data
 db.collection('guides').get().then(snapshot=>{
     setupGuides(snapshot.docs);
-    setupUI();
+    setupUI(user);
     
     })
     console.log('user logged in')
 }
 else {
     setupGuides([])
-    setupUI();
+    setupUI(user);
     
     console.log('user logged out')
 }
 })
+//create new guide
+const createForm=document.querySelector('#create-form');
+createForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
+
+    db.collection('guides').add({
+        title:createForm['title'].value,
+        content:createForm['content'].value
+    }).then(()=>{
+        //close the modal and reset form
+        const modal=document.querySelector('#modal-create')
+        M.Modal.getInstance(modal).close()
+        createForm.reset()
+    })
+})
+
 
 //signup
 const signupForm=document.querySelector('#signup-form');
